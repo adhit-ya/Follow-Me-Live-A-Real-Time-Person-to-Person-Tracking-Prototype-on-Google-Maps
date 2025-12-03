@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Location Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #map { height: 70vh; width: 100%; }
+    #infoPanel {
+      padding: 15px;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .info-box {
+      text-align: center;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 10px;
+      margin: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .info-box h3 { color: #1a73e8; font-size: 24px; }
+    .info-box p { color: #666; font-size: 12px; }
+    #sessionInput {
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      gap: 10px;
+      background: #1a73e8;
+    }
+    #sessionInput input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    #sessionInput button {
+      padding: 10px 20px;
+      background: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="sessionInput">
+    <input type="text" id="sessionId" placeholder="Enter Session ID from sharer">
+    <button onclick="startTracking()">Track</button>
+  </div>
+  <div id="map"></div>
+  <div id="infoPanel">
+    <div class="info-box">
+      <h3 id="distance">--</h3>
+      <p>Distance</p>
+    </div>
+    <div class="info-box">
+      <h3 id="eta">--</h3>
+      <p>ETA</p>
+    </div>
+    <div class="info-box">
+      <h3 id="speed">--</h3>
+      <p>Speed</p>
+    </div>
+    <div class="info-box">
+      <h3 id="lastUpdate">--</h3>
+      <p>Last Update</p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  
+  <!-- Google Maps with Directions library -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC62lDcrnZUTaxRuFI6HLC5SWrVgMp87NE&libraries=places"></script>
+  
+  <script src="tracker.js"></script>
+</body>
+</html>

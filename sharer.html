@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share Live Location</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; padding: 20px; text-align: center; }
+    #status { margin: 20px; padding: 15px; border-radius: 10px; }
+    .sharing { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    #shareLink { margin-top: 20px; padding: 10px; width: 80%; }
+  </style>
+</head>
+<body>
+  <h1>📍 Live Location Sharer</h1>
+  <div id="status">Initializing...</div>
+  <p>Share this Session ID with follower:</p>
+  <input type="text" id="shareLink" readonly>
+  <button onclick="copyLink()">Copy Link</button>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  <script src="sharer.js"></script>
+</body>
+</html>
