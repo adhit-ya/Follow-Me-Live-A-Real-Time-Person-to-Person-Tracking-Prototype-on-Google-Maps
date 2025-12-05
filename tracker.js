@@ -1,6 +1,6 @@
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC62lDcrnZUTaxRuFI6HLC5SWrVgMp87NE",
+  apiKey: "AIzaSyDOuLTArxFeMQ5DfY4fhpixPCBjQyqaeD8",
   authDomain: "live-location-tracker-4a1de.firebaseapp.com",
   databaseURL: "https://live-location-tracker-4a1de-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "live-location-tracker-4a1de"
@@ -64,6 +64,45 @@ function initMap() {
   // Get tracker's own position
   watchTrackerPosition();
 }
+
+let lastTrackerPosition = null;
+
+function watchTrackerPosition() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(
+      (position) => {
+        const newPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // Optional: rotate map in direction of movement
+        if (lastTrackerPosition) {
+          const heading = google.maps.geometry.spherical.computeHeading(
+            new google.maps.LatLng(lastTrackerPosition.lat, lastTrackerPosition.lng),
+            new google.maps.LatLng(newPos.lat, newPos.lng)
+          );
+          map.setHeading(heading);
+          map.setTilt(45);
+        }
+
+        lastTrackerPosition = newPos;
+        trackerPosition = newPos;
+
+        const latLng = new google.maps.LatLng(newPos.lat, newPos.lng);
+        trackerMarker.setPosition(latLng);   // blue marker moves
+        map.panTo(latLng);                   // keep view centered on tracker
+
+        if (sharerPosition) {
+          calculateRoute();                  // update route, distance, ETA
+        }
+      },
+      (error) => console.error('Tracker GPS error:', error),
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 3000 }
+    );
+  }
+}
+
 
 // Watch tracker's (your) position
 function watchTrackerPosition() {
