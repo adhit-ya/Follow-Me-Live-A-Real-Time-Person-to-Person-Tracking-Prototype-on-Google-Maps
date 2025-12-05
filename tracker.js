@@ -1,6 +1,6 @@
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDOuLTArxFeMQ5DfY4fhpixPCBjQyqaeD8",
+  apiKey: "YOUR_API_KEY",
   authDomain: "live-location-tracker-4a1de.firebaseapp.com",
   databaseURL: "https://live-location-tracker-4a1de-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "live-location-tracker-4a1de"
