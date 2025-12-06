@@ -76,7 +76,7 @@ function watchTrackerPosition() {
           lng: position.coords.longitude
         };
 
-        // Optional: rotate map in direction of movement
+        // rotate map in direction of movement
         if (lastTrackerPosition) {
           const heading = google.maps.geometry.spherical.computeHeading(
             new google.maps.LatLng(lastTrackerPosition.lat, lastTrackerPosition.lng),
@@ -104,7 +104,7 @@ function watchTrackerPosition() {
 }
 
 
-// Watch tracker's (your) position
+// Watch tracker's position
 function watchTrackerPosition() {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(

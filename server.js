@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files (optional for local testing)
+// Serve static files
 app.use(express.static('public'));
 
 const httpServer = http.createServer(app);
